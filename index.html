@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            #selectionHighlight {
+              background-image: paint(highlight);
+              z-index: 10;
+              opacity: 1.0;
+            }
+          </style>
+          <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+          <title>PaintWorklet grid selection</title>
+        </head>
+        <body>
+            <div id="selectionHighlight" style="position: absolute;">
+            </div>
+            <div id="gridContainer" style="border: 1px solid blue; position: absolute;">
+                <canvas id="grid"></canvas>
+            </div>
+            
+        <!-- <script src="css-paint-polyfill.js"></script> -->
+        <script src="app.js"></script>
+    </body>
+</html>
