@@ -16,3 +16,5 @@ To run need to have a web server. E.g.:
 Open Chrome on http://localhost:8080
 
 Use mouse to select on grid.
+
+![image](https://user-images.githubusercontent.com/6101900/203783096-78cfbf5b-9f9a-4ba0-84f3-66d3d5969965.png)
