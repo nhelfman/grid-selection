@@ -15,15 +15,17 @@ let isSelecting = false;
 const selectionState = {
     offsetX: 0,
     offsetY: 0,
-    width: cellSize,
-    height: cellSize
+    width: cellSize/2,
+    height: cellSize/2
 };
+
+updateHighlight();
 
 selectionHighlight.addEventListener("mousemove", e => {
     if (!isSelecting) {
         return;
     }
-
+    
     selectionState.width = e.offsetX - selectionState.offsetX;
     selectionState.height = e.offsetY - selectionState.offsetY;
 

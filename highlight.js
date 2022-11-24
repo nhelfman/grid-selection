@@ -11,8 +11,8 @@ class SelectionHighlightPainter {
 
     const adjustedX = Math.floor(offsetX / cellSize) * cellSize;
     const adjustedY = Math.floor(offsetY / cellSize) * cellSize;
-    const adjustedWidth = Math.floor(width / cellSize + 1) * cellSize;
-    const adjustedHeight = Math.floor(height / cellSize + 1) * cellSize;
+    const adjustedWidth = Math.max(Math.floor(width / cellSize + 1), 1) * cellSize;
+    const adjustedHeight = Math.max(Math.floor(height / cellSize + 1), 1) * cellSize;
 
     // selection rect
     this.drawHighlights(ctx, adjustedX, adjustedY, adjustedWidth, adjustedHeight);
