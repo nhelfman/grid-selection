@@ -2,13 +2,14 @@ class SelectionHighlightPainter {
   static get inputProperties() { return ['--offsetX', '--offsetY', '--width', '--height']; }
 
   paint(ctx, geom, properties) {
-    //  ctx.globalAlpha = 1.3;
+    const cellSize = 20;
+    
     const offsetX = parseInt(properties.get('--offsetX')[0]);
     const offsetY = parseInt(properties.get('--offsetY')[0]);
     const width = parseInt(properties.get('--width')[0]);
     const height = parseInt(properties.get('--height')[0]);
-    const cellSize = 20;
 
+    // adjust dimensions to grid line offsets
     const adjustedX = Math.floor(offsetX / cellSize) * cellSize;
     const adjustedY = Math.floor(offsetY / cellSize) * cellSize;
     const adjustedWidth = Math.max(Math.floor(width / cellSize + 1), 1) * cellSize;
@@ -17,7 +18,7 @@ class SelectionHighlightPainter {
     // selection rect
     this.drawHighlights(ctx, adjustedX, adjustedY, adjustedWidth, adjustedHeight);
 
-    // selection range overlay filler
+    // selection range overlay filler only when not single cell
     if(adjustedHeight !== cellSize && adjustedWidth !== cellSize) {
       this.drawHighlightFill(ctx, adjustedX, adjustedY, adjustedWidth, adjustedHeight, cellSize);
     }
@@ -39,7 +40,7 @@ class SelectionHighlightPainter {
     ctx.beginPath();
     ctx.rect(adjustedX, adjustedY, width, height);
 
-    // header markers
+    // row/col header selection markers
     ctx.moveTo(adjustedX, 2);
     ctx.lineTo(adjustedX + width, 2);
 
@@ -62,5 +63,3 @@ class SelectionHighlightPainter {
 
 // Register our class under a specific name
 registerPaint('highlight', SelectionHighlightPainter);
-
-console.log("highlight.js");

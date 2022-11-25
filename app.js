@@ -19,6 +19,7 @@ const selectionState = {
     height: cellSize/2
 };
 
+// paint first selection
 updateHighlight();
 
 selectionHighlight.addEventListener("mousemove", e => {
@@ -26,13 +27,25 @@ selectionHighlight.addEventListener("mousemove", e => {
         return;
     }
     
-    selectionState.width = e.offsetX - selectionState.offsetX;
-    selectionState.height = e.offsetY - selectionState.offsetY;
+    const width = e.offsetX - selectionState.offsetX;
+    const height = e.offsetY - selectionState.offsetY;
+
+    const widthDistanceChange = Math.abs(width - selectionState.width);
+    const heightDistanceChange = Math.abs(height - selectionState.height);
+
+    if(widthDistanceChange && heightDistanceChange < cellSize) {
+        // selection was not changed beyond current selection - avoid redundant repaint
+        return;
+    }
+
+    selectionState.width = width;
+    selectionState.height = height;
 
     updateHighlight();
 });
 
 selectionHighlight.addEventListener("mousedown", e => {
+    // initiate active cell selection on the clicked location
     isSelecting = true;
 
     selectionState.offsetX = e.offsetX;
@@ -43,7 +56,7 @@ selectionHighlight.addEventListener("mousedown", e => {
     updateHighlight();
 });
 
-selectionHighlight.addEventListener("mouseup", e => {
+selectionHighlight.addEventListener("mouseup", _ => {
     isSelecting = false;
 });
 
@@ -85,6 +98,7 @@ function init() {
 }
 
 function updateHighlight() {
+    // updating the properties will trigger a style-recalc which will cause a new paint
     selectionHighlight.style.setProperty("--offsetX", selectionState.offsetX);
     selectionHighlight.style.setProperty("--offsetY", selectionState.offsetY);
     selectionHighlight.style.setProperty("--width", selectionState.width);
