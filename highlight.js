@@ -25,7 +25,7 @@ class SelectionHighlightPainter {
   }
 
   drawHighlightFill(ctx, adjustedX, adjustedY, width, height, cellSize) {
-    ctx.globalAlpha = 0.3;
+    ctx.globalAlpha = 0.3; // needs to semi-transparent so content will be visible
     ctx.fillStyle = "gray";
 
     // leave the active cell within selection without filler
