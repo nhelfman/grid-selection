@@ -26,14 +26,14 @@ selectionHighlight.addEventListener("mousemove", e => {
     if (!isSelecting) {
         return;
     }
-    
+
     const width = e.offsetX - selectionState.offsetX;
     const height = e.offsetY - selectionState.offsetY;
 
     const widthDistanceChange = Math.abs(width - selectionState.width);
     const heightDistanceChange = Math.abs(height - selectionState.height);
 
-    if(widthDistanceChange && heightDistanceChange < cellSize) {
+    if(widthDistanceChange < cellSize && heightDistanceChange < cellSize) {
         // selection was not changed beyond current selection - avoid redundant repaint
         return;
     }
