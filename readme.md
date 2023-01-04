@@ -5,7 +5,10 @@ The goal is to being able to perform smooth and fast selection without inducing 
 
 Since the drawing of the selection highlight happens in the paint phase no layout is required.
 
-To run need to have a web server. E.g.:
+Test page to see this in action:
+https://nhelfman.github.io/grid-selection/index.html
+
+To run locally need to have a web server. E.g.:
 ```
 >npm install -g http-server
 >http-server
